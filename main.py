@@ -1,4 +1,7 @@
 import gui
-import matriz
 
-m = Matrix
+def main():
+    gui.event_loop()
+
+if __name__ == "__main__":
+    main()
