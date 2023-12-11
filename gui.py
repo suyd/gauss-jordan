@@ -17,17 +17,7 @@ def change_value():
     window.close()
     return int(input)
 
-#def render_matrix(m):
-#    layout = [[sg.Text('Matriz', font='Default 25')],
-#             [sg.Text(size=(15,1), key='-MESSAGE-', font='Default 20')]]
-#
-#    layout += [[sg.Button(str(m.Matrix[row][col]), size=(4,2), pad=(1,1), border_width=2, key=(row,col)) for col in range(int(m.MAX_COL))] for row in range(int(m.MAX_ROWS))]
-#    
-    
-
-
-
-def render_matrix(m):
+def window_modify_matrix(m):
     layout = [[sg.Text('Matriz', font='Default 25')],
              [sg.Text(size=(15,1), key='-MESSAGE-', font='Default 20')]]
 
@@ -41,23 +31,13 @@ def render_matrix(m):
 
     if event == "Exit" or event == sg.WIN_CLOSED or event == "Cancel":
         window.close()
+        return -1
+
     else:
         m.Matrix[event[0], event[1]] = change_value()
 
     window.close()
-
     
-
-#    while True:
-#        event, values = window.read()
-#        if event == "Exit" or event == sg.WIN_CLOSED or event == "Cancel":
-#            break
-#        else:
-#            m.Matrix[event[0], event[1]] = change_value()
-#            print(m.Matrix[event[0], event[1]]) 
-#            # cuando presiono un boton tengo estas coordenadas, mandar a un prompt para modificar ese valor
-#        
-#    window.close()
 
 def window_get_size():
     layout = [[sg.Text('Tamaño de Matriz Cuadrada')],
@@ -77,12 +57,14 @@ def window_get_size():
 
 
 def event_loop():
-    m = matrix.Matrix
+    matriz_A = np.array([])
+    matriz_B = np.array([])
     size = window_get_size()
-    m = matrix.square_matrix(m, size)
+    matriz_A = matriz.gen_matrix(matriz_A, size, size)
+    matriz_B = matriz.gen_matrix(matriz_B, size, 1)
 
     while True:
-        render_matrix(m)
-#        if 
+        m = window_modify_matrix(m)
+        if m == -1:
+            break
     
-    window.close()

@@ -1,35 +1,32 @@
 import numpy as np
 
-class Matrix():
-    def __init__(self):
-        self.Matrix = np.array([])
-        self.MAX_ROWS = 0
-        self.MAX_COL = 0
-
-
-def square_matrix(m, size):
-    m.MAX_ROWS = m.MAX_COL = size
-    m.Matrix = np.zeros( (m.MAX_ROWS, m.MAX_COL) )
-    return m
+def gen_matrix(matrix, rows, columns):
+    matrix = np.zeros([rows, columns])
+    return matrix
 
 #Rellenar por filas
-def fill_matrix_manual(m):
-    for i in range(m.MAX_COL):
+def fill_matrix_manual(matrix, rows, columns):
+    for i in range(columns):
         a = 0
-        for j in range(m.MAX_ROWS):
+        for j in range(rows):
             msg = "Fila " + str(i+1) + " Columna " + str(j+1) + ": "
             a = int(input(msg))
-            m.Matrix[i][j] = a
-    return m
+            matrix[j][i] = a
+    return matrix
 
-def gauss_jordan():
-    pass
+    
+def test():
+    matrix_A = np.array([])
+    matrix_B = np.array([])
 
-#m = Matrix
-#size = 2
-#m = square_matrix(m, size)
-#
-#m = fill_matrix_manual(m)
+    size = 2
 
+    matrix_A = gen_matrix(matrix_A, size, size)
+    matrix_B = gen_matrix(matrix_B, size, 1)
 
-#print(m.Matrix)
+    matrix_B = fill_matrix_manual(matrix_B, size, 1)
+
+    print (matrix_A,matrix_B)
+    #ask user for the matrix, and the solutions
+    matrix_ampliada = np.concatenate((matrix_A, matrix_B), axis=1)
+    print(matrix_ampliada)
