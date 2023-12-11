@@ -83,6 +83,6 @@ def event_loop():
 
     while True:
         render_matrix(m)
-        if 
+#        if 
     
     window.close()
